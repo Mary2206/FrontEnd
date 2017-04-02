@@ -2,15 +2,20 @@
 	var elements = document.querySelector('.elements');
 
 	var pageHeight = 0;
-	 document.addEventListener('scroll', function () {
+	function init() {
+		
+		arguments.callee.done=true;
 		var scrollTop = document.body.scrollTop;
 		var clientHeight = document.documentElement.clientHeight;
-		if (((scrollTop + clientHeight) >= document.body.scrollHeight)&& (document.body.scrollHeight != pageHeight))
+		
+		if ((scrollTop + clientHeight) >= document.body.scrollHeight)
 		{
 			pageHeight = document.body.scrollHeight;
 			loadMore();
 		}
-	});
+	}
+	
+	document.addEventListener('scroll',init,false)
 	
 function loadMore(){
   var xhr = new XMLHttpRequest();
